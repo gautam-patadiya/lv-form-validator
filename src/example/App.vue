@@ -42,7 +42,7 @@ export default {
 			form: this.$form({
 				title: 'hello',
 				fileOne: '.fileUploadOne', // Element By class Selector
-				// fileOne: '#fileUploadOne', // Element By id Selector
+				// fileOne: '#fileUploadOne', // Or Element By id Selector
 			})
 		}
   	},

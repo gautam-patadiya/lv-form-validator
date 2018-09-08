@@ -2,7 +2,7 @@ import Error from './Error';
 import Axios from 'axios';
 
 /**
- * To create FormData object and Make Request on Specified URL
+ * To create FormData object and Make Request on Specified URL or URI
  * 
  */
 export default class {
@@ -43,17 +43,6 @@ export default class {
      */
     get(uri, options) {
         return this.method('get', uri, options);
-    }
-
-    /**
-     * To make ANY Request. For Laravel Route::any()
-     * 
-     * @param {string} uri
-     * @param {string|object} options
-     * @return {mixed}
-     */
-    any(uri, options) {
-        return this.method('any', uri, options);
     }
 
     /**
@@ -132,15 +121,13 @@ export default class {
     createFormData(method, uri, options){
         var vm = this;
         const data = new FormData();
-        data.append('_method', method);
 
         Object.keys(vm.$fields).map((index) => {
-            if(vm.$fields[index] != null && (vm.$fields[index].startsWith('#') || vm.$fields[index].startsWith('.'))){ // Input File
+            if(vm.$fields[index] != null && (vm.$fields[index].toString().startsWith('#') || vm.$fields[index].toString().startsWith('.'))) { // Input File
                 var inp = document.querySelector(vm.$fields[index]);
 
-                if(inp == null || inp.length <= 0 || inp.length > 1) {
+                if(inp == null || inp.length <= 0 || inp.length > 1)
                     reject("Invalid DOM Element ["+index+"]. Make sure only single element exist with selector.");
-                }
 
                 if(inp.multiple) {
                     for (var i = 0; i < inp.files.length; ++i) {
@@ -151,42 +138,47 @@ export default class {
                 } else {
                     data.append(index, '');
                 }
-            }else{ // Normal Inputs
+            } else { // Normal Inputs
                 data.append(index, vm.$fields[index]);
             }
         });
         
-        return makeRequest(method, uri, options, data);
+        data.append('_method', method);
+        var action = ((method != 'get') ? 'post' : 'get');
+        return this.makeRequest(action, uri, options, data);
     }
 
     /**
-     * To send request with Specified URL
+     * To send request with Specified URI
      * 
-     * @param {string} method
+     * @param {string} action
      * @param {string} uri
      * @param {object} data
      * @param {string|object} options
      * @return {void}
      */
-    makeRequest(method, uri, options, data){
+    makeRequest(action, uri, options, data){
         var vm = this;
         return new Promise(function (resolve, reject) {
             vm.setBusy(true);
-
-            vm.$http[method](uri, data, options)
+            
+            vm.$http[action](uri, data, options)
             .then((response) => {
                 resolve(response);
             })
             .catch((error) => {
                 let response = error.response;
+                
+                if(response !== undefined) {
+                    if (response !== undefined && typeof response.data.errors === "object")
+                        vm.setError(response.data.errors);
+                    else
+                        vm.setError(response.data);
 
-                if (typeof response.data.errors === "object")
-                    vm.setError(response.data.errors);
-                else
-                    vm.setError(response.data);
-
-                reject(response);
-
+                    reject(response);
+                } else {
+                    reject(error);
+                }
             })
             .finally(() => {
                 vm.setBusy(false);
