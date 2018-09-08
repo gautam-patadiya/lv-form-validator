@@ -1,6 +1,6 @@
 {
-	"name": "laravel-vue-form-validator",
-	"version": "1.0.1",
+	"name": "lv-form-validator",
+	"version": "1.0.0",
 	"description": "Laravel Form Validator with File Upload For Vue.js included Axios",
 	"main": "dist/build.js",
 	"dependencies": {
@@ -29,7 +29,7 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/gautam-patadiya/laravel-vue-form-validator.git"
+		"url": "git+https://github.com/gautam-patadiya/lv-form-validator"
 	},
 	"author": "Gautam Patadiya <gprajapati15@gmail.com>",
 	"license": "MIT",
@@ -46,7 +46,7 @@
 		"file-upload"
 	],
 	"bugs": {
-		"url": "https://github.com/gautam-patadiya/laravel-vue-form-validator/issues"
+		"url": "https://github.com/gautam-patadiya/lv-form-validator/issues"
 	},
-	"homepage": "https://github.com/gautam-patadiya/laravel-vue-form-validator#readme"
+	"homepage": "https://github.com/gautam-patadiya/lv-form-validator#readme"
 }
