@@ -1,6 +1,6 @@
 {
 	"name": "lv-form-validator",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Laravel Form Validator with File Upload For Vue.js included Axios",
 	"main": "dist/build.js",
 	"dependencies": {

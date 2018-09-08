@@ -129,7 +129,7 @@ export default class {
      * @param {string|object} options
      * @return {mixed}
      */
-    getFormData(method, uri, options){
+    createFormData(method, uri, options){
         var vm = this;
         const data = new FormData();
         data.append('_method', method);
