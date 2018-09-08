@@ -1,0 +1,52 @@
+{
+	"name": "laravel-vue-form-validator",
+	"version": "1.0.1",
+	"description": "Laravel Form Validator with File Upload For Vue.js included Axios",
+	"main": "dist/build.js",
+	"dependencies": {
+		"vue": "^2.5.17",
+		"axios": "^0.18.0"
+	},
+	"devDependencies": {
+		"babel-core": "^6.26.0",
+		"babel-loader": "^7.1.2",
+		"babel-preset-env": "^1.6.0",
+		"babel-preset-stage-3": "^6.24.1",
+		"vue-loader": "^15.4.1",
+		"vue-template-compiler": "^2.5.17",
+		"webpack": "^4.17.2",
+		"webpack-cli": "^3.1.0",
+		"webpack-dev-server": "^3.1.7"
+	},
+	"scripts": {
+		"dev": "webpack-dev-server --mode development --progress --hot --open",
+		"build": "webpack --mode development --progress --hot"
+	},
+	"browserslist": [
+		"> 1%",
+		"last 2 versions",
+		"not ie <= 8"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/gautam-patadiya/laravel-vue-form-validator.git"
+	},
+	"author": "Gautam Patadiya <gprajapati15@gmail.com>",
+	"license": "MIT",
+	"keywords": [
+		"vuejs",
+		"form",
+		"axios",
+		"laravel",
+		"validator",
+		"validate",
+		"form-validation",
+		"file-upload-vuejs",
+		"file-upload-axios",
+		"file-upload"
+	],
+	"bugs": {
+		"url": "https://github.com/gautam-patadiya/laravel-vue-form-validator/issues"
+	},
+	"homepage": "https://github.com/gautam-patadiya/laravel-vue-form-validator#readme"
+}
