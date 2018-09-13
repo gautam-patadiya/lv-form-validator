@@ -3,13 +3,13 @@ import Axios from 'axios';
 
 /**
  * To create FormData object and Make Request on Specified URL or URI
- * 
+ *
  */
 export default class {
 
     /**
      * To Create Instance
-     * 
+     *
      * @constructor
      * @param {object} fields - Number of form fields
      */
@@ -25,7 +25,7 @@ export default class {
 
     /**
      * To make POST Request
-     * 
+     *
      * @param {string} uri
      * @param {string|object} options
      * @return {mixed}
@@ -36,7 +36,7 @@ export default class {
 
     /**
      * To make GET Request
-     * 
+     *
      * @param {string} uri
      * @param {string|object} options
      * @return {mixed}
@@ -47,7 +47,7 @@ export default class {
 
     /**
      * To make PATCH Request
-     * 
+     *
      * @param {string} uri
      * @param {string|object} options
      * @return {mixed}
@@ -58,7 +58,7 @@ export default class {
 
     /**
      * To make PUT Request
-     * 
+     *
      * @param {string} uri
      * @param {string|object} options
      * @return {mixed}
@@ -69,7 +69,7 @@ export default class {
 
     /**
      * To make DELETE Request
-     * 
+     *
      * @param {string} uri
      * @param {string|object} options
      * @return {mixed}
@@ -88,8 +88,8 @@ export default class {
     }
 
     /**
-     * To set error object with Error Class 
-     * 
+     * To set error object with Error Class
+     *
      * @param {object} errors
      * @return {void}
      */
@@ -99,7 +99,7 @@ export default class {
 
     /**
      * To set error and Execute Request with Specified params
-     * 
+     *
      * @param {string} method
      * @param {string} uri
      * @param {string|object} options
@@ -112,7 +112,7 @@ export default class {
 
     /**
      * To create FormData Class Object
-     * 
+     *
      * @param {string} method
      * @param {string} uri
      * @param {string|object} options
@@ -139,10 +139,13 @@ export default class {
                     data.append(index, '');
                 }
             } else { // Normal Inputs
+              if(typeof(vm.$fields[index]) === "object")
+                data.append(index, JSON.stringify(vm.$fields[index]));
+              else
                 data.append(index, vm.$fields[index]);
             }
         });
-        
+
         data.append('_method', method);
         var action = ((method != 'get') ? 'post' : 'get');
         return this.makeRequest(action, uri, options, data);
@@ -150,7 +153,7 @@ export default class {
 
     /**
      * To send request with Specified URI
-     * 
+     *
      * @param {string} action
      * @param {string} uri
      * @param {object} data
@@ -161,14 +164,14 @@ export default class {
         var vm = this;
         return new Promise(function (resolve, reject) {
             vm.setBusy(true);
-            
+
             vm.$http[action](uri, data, options)
             .then((response) => {
                 resolve(response);
             })
             .catch((error) => {
                 let response = error.response;
-                
+
                 if(response !== undefined) {
                     if (response !== undefined && typeof response.data.errors === "object")
                         vm.setError(response.data.errors);

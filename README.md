@@ -110,5 +110,6 @@ All properies are same as [here](https://github.com/MetinSeylan/Vue-Laravel-Vali
 
  - Component with create FormData Object and then do request. Means it will use multipart/form-data with every ajax request.
  - With every request Component will default send _method parameter to indentify Laravel Routing Request. 
+ - Plugin using FormData Class. And appends form inputs. When you send object as input it will parse into JSON.stringify() 
 
 That's it. Plugin include Laravel 5.5 and Laravel 5.6 support.
